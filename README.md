@@ -12,4 +12,4 @@ This repo holds the code for the Lotto-Isnights-Web-App. Lotto-Insights allows y
 #### Static Webpage:
 The entire application is written in Javascript & HTML. The static app is than hosted on Firebase, hence cached on SSD and served via a global CDN with SSL certification. Firebase is a backend as a service that allows you to build and run a production app at scale. Lastly, I got myself a custom domain from #Google #Domains that redirects to the Firebase application.
 
-![alt text](https://github.com/cassini-chris/Lotto-Insights/blob/main/_GITHUB/readme/images/background.jpeg?raw=true)
+![alt text](https://github.com/cassini-chris/Lotto-Insights/blob/main/_GITHUB/readme/images/lotto.jpeg?raw=true)
