@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="apple-touch-icon" sizes="180x180" href="_images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="_images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="_images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="_images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="_images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="_images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="_images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Lotto Insights</title>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="_css/index.css" type="text/css">
+
+  <!-- Ziehungen -->
+  <script src="numbers.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Custom font -->
+  <link href="https://fonts.googleapis.com/css?family=Assistant|Cabin|Indie+Flower|Muli|Nunito&display=swap" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TDF94XFJCB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TDF94XFJCB');
+  </script>
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#29527b">
+    <div class="container">
+      <a href="http://lotto-insights.de"><img id="logo" style="width:40px; height:40px" src="_images/klee.png" alt="Lotto-Insights.de"></a>
+      <a style="padding-left:7px" class="navbar-brand" href="http://lotto-insights.de">Lotto-Insights.de</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="http://lotto-insights.de">Home<span class="sr-only">(current)</span> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="about" href="#" onclick="aboutFunction()">About</a>
+            <script>
+              function aboutFunction() {
+                alert("Developer:  Christoph Mittendorf \nContact: hello@epicml.net  \n\nCode: the entire source code will soon be available on EpicML.net \nVisit ML-Models.de for more information");
+              }
+            </script>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="bd-pageheader text-center text-sm-left" style="background-color: yellow; height:140px; color: red">
+    <div class="container" style="text-align:center">
+      <!-- Title Content ---------------------------------------------------------------------------------------------------------->
+      <h1 id="heading_big" style="font-weight:bold">Lotto Insights</h1>
+
+      <style>
+      </style>
+      <span id="heading_small">Wann hätte ich gewonnen?</span>
+    </div>
+  </div>
+
+
+  <div class="bd-pageheader text-center text-sm-left" style="background-color: #29527b; height:40px; color: white">
+    <div class="container" style="text-align:center">
+      <p id="description" style="font-size:14px; padding-top:8px">Lotto-Insights läuft auf Firebase.</a></p>
+    </div>
+  </div>
+
+
+  <h1 style="text-align:center; padding-top:15px"> Dein Tipp </h1>
+
+  <style>
+
+    }
+  </style>
+
+  <div id="container" style="height: 250px; width: 100%;">
+    <div class="row" style="margin:0">
+      <div class="col-md-12">
+
+        <div id="row_1" style="height:45px; margin: 0 auto; display: flex; justify-content: center">
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; width:17px; padding:2px 0 0 9px ">1</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_1" name="checkbox" value="1" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px;  width:25px; padding:2px 0 0 9px ">2</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_2" name="checkbox" value="2" onclick="add_to_array()">
+
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; width:25px; padding:2px 0 0 9px ">3</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_3" name="checkbox" value="3" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; width:25px; padding:2px 0 0 9px ">4</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_4" name="checkbox" value="4" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; width:25px; padding:2px 0 0 9px ">5</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_5" name="checkbox" value="5" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; width:25px; padding:2px 0 0 9px ">6</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_6" name="checkbox" value="6" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; width:25px; padding:2px 0 0 9px ">7</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_7" name="checkbox" value="7" onclick="add_to_array()">
+          </div>
+        </div>
+
+        <!-- --------------------- -->
+
+        <div id="row_2" style="height:45px; display: flex; justify-content: center">
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">8</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_8" name="checkbox" value="8" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">9</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_9" name="checkbox" value="9" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">10</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_10" name="checkbox" value="10" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">11</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_11" name="checkbox" value="11" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">12</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_12" name="checkbox" value="12" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">13</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_13" name="checkbox" value="13" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">14</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_14" name="checkbox" value="14" onclick="add_to_array()">
+          </div>
+        </div>
+
+
+        <!-- --------------------- -->
+
+        <div id="row_3" style="height:45px; display: flex; justify-content: center">
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">15</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_15" name="checkbox" value="15" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">16</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_16" name="checkbox" value="16" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">17</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_17" name="checkbox" value="17" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">18</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_18" name="checkbox" value="18" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">19</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_19" name="checkbox" value="19" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">20</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_20" name="checkbox" value="20" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">21</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_21" name="checkbox" value="21" onclick="add_to_array()">
+          </div>
+        </div>
+
+        <!-- --------------------- -->
+
+        <div id="row_4" style="height:45px; display: flex; justify-content: center">
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">22</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_22" name="checkbox" value="22" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">23</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_23" name="checkbox" value="23" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">24</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_24" name="checkbox" value="24" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">25</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_25" name="checkbox" value="25" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">26</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_26" name="checkbox" value="26" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">27</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_27" name="checkbox" value="27" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">28</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_28" name="checkbox" value="28" onclick="add_to_array()">
+          </div>
+        </div>
+
+        <!-- --------------------- -->
+
+        <div id="row_5" style="height:45px; display: flex; justify-content: center">
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">29</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_29" name="checkbox" value="29" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">30</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_30" name="checkbox" value="30" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">31</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_31" name="checkbox" value="31" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">32</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_32" name="checkbox" value="32" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">33</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_33" name="checkbox" value="33" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">34</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_34" name="checkbox" value="34" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">35</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_35" name="checkbox" value="35" onclick="add_to_array()">
+          </div>
+        </div>
+
+        <!-- --------------------- -->
+
+        <div id="row_6" style="height:45px; display: flex; justify-content: center">
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">36</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_36" name="checkbox" value="36" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">37</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_37" name="checkbox" value="37" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">38</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_38" name="checkbox" value="38" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">39</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_39" name="checkbox" value="39" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">40</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_40" name="checkbox" value="40" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">41</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_41" name="checkbox" value="41" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">42</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_42" name="checkbox" value="42" onclick="add_to_array()">
+          </div>
+        </div>
+
+        <!-- --------------------- -->
+
+        <div id="row_6" style="height:45px; display: flex; justify-content: center">
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">43</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_43" name="checkbox" value="43" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:2px 0 0 8px ">44</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_44" name="checkbox" value="44" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">45</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_45" name="checkbox" value="45" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">46</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_46" name="checkbox" value="46" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">47</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_47" name="checkbox" value="47" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">48</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_48" name="checkbox" value="48" onclick="add_to_array()">
+          </div>
+
+          <div class="checkbox-container">
+            <label style="position:absolute; font-size:20px; padding:4px 0 0 5px ">49</label>
+            <input style="position:absolute" type="checkbox" id="checkbox_49" name="checkbox" value="49" onclick="add_to_array()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </br>
+  </br>
+
+<div style="margin:0 auto; text-align:center; margin: 25px 0 0 0">
+  <button type="button" id="reset_button" class="btn btn-outline-danger" onclick="uncheck()">Reset</button>
+</div>
+
+<script>
+function uncheck()
+{
+document.getElementById("checkbox_1").checked = false;
+document.getElementById("checkbox_2").checked = false;
+document.getElementById("checkbox_3").checked = false;
+document.getElementById("checkbox_4").checked = false;
+document.getElementById("checkbox_5").checked = false;
+document.getElementById("checkbox_6").checked = false;
+document.getElementById("checkbox_7").checked = false;
+document.getElementById("checkbox_8").checked = false;
+document.getElementById("checkbox_9").checked = false;
+document.getElementById("checkbox_10").checked = false;
+
+document.getElementById("checkbox_11").checked = false;
+document.getElementById("checkbox_12").checked = false;
+document.getElementById("checkbox_13").checked = false;
+document.getElementById("checkbox_14").checked = false;
+document.getElementById("checkbox_15").checked = false;
+document.getElementById("checkbox_16").checked = false;
+document.getElementById("checkbox_17").checked = false;
+document.getElementById("checkbox_18").checked = false;
+document.getElementById("checkbox_19").checked = false;
+document.getElementById("checkbox_20").checked = false;
+
+document.getElementById("checkbox_21").checked = false;
+document.getElementById("checkbox_22").checked = false;
+document.getElementById("checkbox_23").checked = false;
+document.getElementById("checkbox_24").checked = false;
+document.getElementById("checkbox_25").checked = false;
+document.getElementById("checkbox_26").checked = false;
+document.getElementById("checkbox_27").checked = false;
+document.getElementById("checkbox_28").checked = false;
+document.getElementById("checkbox_29").checked = false;
+document.getElementById("checkbox_30").checked = false;
+
+document.getElementById("checkbox_31").checked = false;
+document.getElementById("checkbox_32").checked = false;
+document.getElementById("checkbox_33").checked = false;
+document.getElementById("checkbox_34").checked = false;
+document.getElementById("checkbox_35").checked = false;
+document.getElementById("checkbox_36").checked = false;
+document.getElementById("checkbox_37").checked = false;
+document.getElementById("checkbox_38").checked = false;
+document.getElementById("checkbox_39").checked = false;
+document.getElementById("checkbox_40").checked = false;
+
+document.getElementById("checkbox_41").checked = false;
+document.getElementById("checkbox_42").checked = false;
+document.getElementById("checkbox_43").checked = false;
+document.getElementById("checkbox_44").checked = false;
+document.getElementById("checkbox_45").checked = false;
+document.getElementById("checkbox_46").checked = false;
+document.getElementById("checkbox_47").checked = false;
+document.getElementById("checkbox_48").checked = false;
+document.getElementById("checkbox_49").checked = false;
+
+add_to_array();
+}
+</script>
+
+
+  <h1 id="results" style="text-align:center;margin:0; text-shadow: 0 0 3px #FF0000;"></h1>
+  <h4 id="numbers_selected" style="text-align:center;margin:0; text-shadow: 0 0 3px #FF0000; padding-bottom: 15px"></h4>
+  <h5 id="dein_gewinn" style="text-align:center;margin:0; text-shadow: 0 0 3px #007500; padding-bottom: 15px">Gewinn: 0</h5>
+
+  <div id="table_div" style="display:none">
+    <table id="date_div" style="text-align:center; margin: 0 auto">
+      <tr>
+        <th>Datum</th>
+        <th>Gewinnzahlen</th>
+      </tr>
+      <tr>
+
+        <td id="date" style="color: black;   margin:0"></td>
+      <td id="date_zahlen" style="color: black;  margin:0"></td>
+      </tr>
+    </table>
+  </div>
+  <script>
+    var all_numbers = [];
+
+    function add_to_array() {
+      all_numbers = [];
+      if (document.getElementById('checkbox_1').checked) {
+        all_numbers.push(document.getElementById('checkbox_1').value)
+      };
+      if (document.getElementById('checkbox_2').checked) {
+        all_numbers.push(document.getElementById('checkbox_2').value)
+      };
+      if (document.getElementById('checkbox_3').checked) {
+        all_numbers.push(document.getElementById('checkbox_3').value)
+      };
+      if (document.getElementById('checkbox_4').checked) {
+        all_numbers.push(document.getElementById('checkbox_4').value)
+      };
+      if (document.getElementById('checkbox_5').checked) {
+        all_numbers.push(document.getElementById('checkbox_5').value)
+      };
+      if (document.getElementById('checkbox_6').checked) {
+        all_numbers.push(document.getElementById('checkbox_6').value)
+      };
+      if (document.getElementById('checkbox_7').checked) {
+        all_numbers.push(document.getElementById('checkbox_7').value)
+      };
+      if (document.getElementById('checkbox_8').checked) {
+        all_numbers.push(document.getElementById('checkbox_8').value)
+      };
+      if (document.getElementById('checkbox_9').checked) {
+        all_numbers.push(document.getElementById('checkbox_9').value)
+      };
+      if (document.getElementById('checkbox_10').checked) {
+        all_numbers.push(document.getElementById('checkbox_10').value)
+      };
+      if (document.getElementById('checkbox_11').checked) {
+        all_numbers.push(document.getElementById('checkbox_11').value)
+      };
+      if (document.getElementById('checkbox_12').checked) {
+        all_numbers.push(document.getElementById('checkbox_12').value)
+      };
+      if (document.getElementById('checkbox_13').checked) {
+        all_numbers.push(document.getElementById('checkbox_13').value)
+      };
+      if (document.getElementById('checkbox_14').checked) {
+        all_numbers.push(document.getElementById('checkbox_14').value)
+      };
+      if (document.getElementById('checkbox_15').checked) {
+        all_numbers.push(document.getElementById('checkbox_15').value)
+      };
+      if (document.getElementById('checkbox_16').checked) {
+        all_numbers.push(document.getElementById('checkbox_16').value)
+      };
+      if (document.getElementById('checkbox_17').checked) {
+        all_numbers.push(document.getElementById('checkbox_17').value)
+      };
+      if (document.getElementById('checkbox_18').checked) {
+        all_numbers.push(document.getElementById('checkbox_18').value)
+      };
+      if (document.getElementById('checkbox_19').checked) {
+        all_numbers.push(document.getElementById('checkbox_19').value)
+      };
+      if (document.getElementById('checkbox_20').checked) {
+        all_numbers.push(document.getElementById('checkbox_20').value)
+      };
+      if (document.getElementById('checkbox_21').checked) {
+        all_numbers.push(document.getElementById('checkbox_21').value)
+      };
+      if (document.getElementById('checkbox_22').checked) {
+        all_numbers.push(document.getElementById('checkbox_22').value)
+      };
+      if (document.getElementById('checkbox_23').checked) {
+        all_numbers.push(document.getElementById('checkbox_23').value)
+      };
+      if (document.getElementById('checkbox_24').checked) {
+        all_numbers.push(document.getElementById('checkbox_24').value)
+      };
+      if (document.getElementById('checkbox_25').checked) {
+        all_numbers.push(document.getElementById('checkbox_25').value)
+      };
+      if (document.getElementById('checkbox_26').checked) {
+        all_numbers.push(document.getElementById('checkbox_26').value)
+      };
+      if (document.getElementById('checkbox_27').checked) {
+        all_numbers.push(document.getElementById('checkbox_27').value)
+      };
+      if (document.getElementById('checkbox_28').checked) {
+        all_numbers.push(document.getElementById('checkbox_28').value)
+      };
+      if (document.getElementById('checkbox_29').checked) {
+        all_numbers.push(document.getElementById('checkbox_29').value)
+      };
+      if (document.getElementById('checkbox_30').checked) {
+        all_numbers.push(document.getElementById('checkbox_30').value)
+      };
+      if (document.getElementById('checkbox_31').checked) {
+        all_numbers.push(document.getElementById('checkbox_31').value)
+      };
+      if (document.getElementById('checkbox_32').checked) {
+        all_numbers.push(document.getElementById('checkbox_32').value)
+      };
+      if (document.getElementById('checkbox_33').checked) {
+        all_numbers.push(document.getElementById('checkbox_33').value)
+      };
+      if (document.getElementById('checkbox_34').checked) {
+        all_numbers.push(document.getElementById('checkbox_34').value)
+      };
+      if (document.getElementById('checkbox_35').checked) {
+        all_numbers.push(document.getElementById('checkbox_35').value)
+      };
+      if (document.getElementById('checkbox_36').checked) {
+        all_numbers.push(document.getElementById('checkbox_36').value)
+      };
+      if (document.getElementById('checkbox_37').checked) {
+        all_numbers.push(document.getElementById('checkbox_37').value)
+      };
+      if (document.getElementById('checkbox_38').checked) {
+        all_numbers.push(document.getElementById('checkbox_38').value)
+      };
+      if (document.getElementById('checkbox_39').checked) {
+        all_numbers.push(document.getElementById('checkbox_39').value)
+      };
+      if (document.getElementById('checkbox_40').checked) {
+        all_numbers.push(document.getElementById('checkbox_40').value)
+      };
+      if (document.getElementById('checkbox_41').checked) {
+        all_numbers.push(document.getElementById('checkbox_41').value)
+      };
+      if (document.getElementById('checkbox_42').checked) {
+        all_numbers.push(document.getElementById('checkbox_42').value)
+      };
+      if (document.getElementById('checkbox_43').checked) {
+        all_numbers.push(document.getElementById('checkbox_43').value)
+      };
+      if (document.getElementById('checkbox_44').checked) {
+        all_numbers.push(document.getElementById('checkbox_44').value)
+      };
+      if (document.getElementById('checkbox_45').checked) {
+        all_numbers.push(document.getElementById('checkbox_45').value)
+      };
+      if (document.getElementById('checkbox_46').checked) {
+        all_numbers.push(document.getElementById('checkbox_46').value)
+      };
+      if (document.getElementById('checkbox_47').checked) {
+        all_numbers.push(document.getElementById('checkbox_47').value)
+      };
+      if (document.getElementById('checkbox_48').checked) {
+        all_numbers.push(document.getElementById('checkbox_48').value)
+      };
+      if (document.getElementById('checkbox_49').checked) {
+        all_numbers.push(document.getElementById('checkbox_49').value)
+      };
+
+      myFunction();
+
+
+      console.log(all_numbers);
+      return all_numbers
+    }
+
+
+    var match = [];
+
+
+    function myFunction() {
+      document.getElementById('results').innerHTML = "";
+      document.getElementById('date').innerHTML = "";
+      document.getElementById('date_zahlen').innerHTML = "";
+      document.getElementById('dein_gewinn').innerHTML = "Gewinn: 0";
+      document.getElementById("table_div").style.display = "none";
+      document.getElementById('numbers_selected').innerHTML = "Zahlen: " + all_numbers.length;
+
+
+      guess = all_numbers;
+      console.log(guess);
+      match = [];
+      var treffer = 0;
+      var Gewinnzahlen = [];
+      var match_win = [];
+      var money = [];
+      //Sorting Array ASCENDING
+      all_numbers.sort(function(a, b) {
+        return a - b;
+      });
+      console.log(all_numbers);
+
+      // Iterating over ALL ZIEHUNGEN
+      for (var i = 0, l1 = ziehung.length; i < l1; i++) {
+        for (var j = 0, l2 = ziehung[i].length; j < l2; j++) {
+          treffer = 0;
+          Gewinnzahlen = [];
+
+          if (all_numbers.length >= 6) {
+            if (all_numbers[0] == ziehung[i][j] ||
+              all_numbers[0] == ziehung[i][j + 1] ||
+              all_numbers[0] == ziehung[i][j + 2] ||
+              all_numbers[0] == ziehung[i][j + 3] ||
+              all_numbers[0] == ziehung[i][j + 4] ||
+              all_numbers[0] == ziehung[i][j + 5]) {
+              treffer = treffer + 1;
+              Gewinnzahlen.push(all_numbers[0]);
+            };
+
+            if (all_numbers[1] == ziehung[i][j] ||
+              all_numbers[1] == ziehung[i][j + 1] ||
+              all_numbers[1] == ziehung[i][j + 2] ||
+              all_numbers[1] == ziehung[i][j + 3] ||
+              all_numbers[1] == ziehung[i][j + 4] ||
+              all_numbers[1] == ziehung[i][j + 5]) {
+              treffer = treffer + 1;
+              Gewinnzahlen.push(all_numbers[1]);
+            };
+
+            if (all_numbers[2] == ziehung[i][j] ||
+              all_numbers[2] == ziehung[i][j + 1] ||
+              all_numbers[2] == ziehung[i][j + 2] ||
+              all_numbers[2] == ziehung[i][j + 3] ||
+              all_numbers[2] == ziehung[i][j + 4] ||
+              all_numbers[2] == ziehung[i][j + 5]) {
+              treffer = treffer + 1;
+              Gewinnzahlen.push(all_numbers[2]);
+            };
+
+            if (all_numbers[3] == ziehung[i][j] ||
+              all_numbers[3] == ziehung[i][j + 1] ||
+              all_numbers[3] == ziehung[i][j + 2] ||
+              all_numbers[3] == ziehung[i][j + 3] ||
+              all_numbers[3] == ziehung[i][j + 4] ||
+              all_numbers[3] == ziehung[i][j + 5]) {
+              treffer = treffer + 1;
+              Gewinnzahlen.push(all_numbers[3]);
+            };
+
+            if (all_numbers[4] == ziehung[i][j] ||
+              all_numbers[4] == ziehung[i][j + 1] ||
+              all_numbers[4] == ziehung[i][j + 2] ||
+              all_numbers[4] == ziehung[i][j + 3] ||
+              all_numbers[4] == ziehung[i][j + 4] ||
+              all_numbers[4] == ziehung[i][j + 5]) {
+              treffer = treffer + 1;
+              Gewinnzahlen.push(all_numbers[4]);
+            };
+
+            if (all_numbers[5] == ziehung[i][j] ||
+              all_numbers[5] == ziehung[i][j + 1] ||
+              all_numbers[5] == ziehung[i][j + 2] ||
+              all_numbers[5] == ziehung[i][j + 3] ||
+              all_numbers[5] == ziehung[i][j + 4] ||
+              all_numbers[5] == ziehung[i][j + 5]) {
+              treffer = treffer + 1;
+              Gewinnzahlen.push(all_numbers[5]);
+            };
+
+
+            if (all_numbers.length >= 7) {
+              if (all_numbers[6] == ziehung[i][j] ||
+                all_numbers[6] == ziehung[i][j + 1] ||
+                all_numbers[6] == ziehung[i][j + 2] ||
+                all_numbers[6] == ziehung[i][j + 3] ||
+                all_numbers[6] == ziehung[i][j + 4] ||
+                all_numbers[6] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[6]);
+              };
+            };
+
+            if (all_numbers.length >= 8) {
+              if (all_numbers[7] == ziehung[i][j] ||
+                all_numbers[7] == ziehung[i][j + 1] ||
+                all_numbers[7] == ziehung[i][j + 2] ||
+                all_numbers[7] == ziehung[i][j + 3] ||
+                all_numbers[7] == ziehung[i][j + 4] ||
+                all_numbers[7] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[7]);
+              };
+            };
+
+            if (all_numbers.length >= 9) {
+              if (all_numbers[8] == ziehung[i][j] ||
+                all_numbers[8] == ziehung[i][j + 1] ||
+                all_numbers[8] == ziehung[i][j + 2] ||
+                all_numbers[8] == ziehung[i][j + 3] ||
+                all_numbers[8] == ziehung[i][j + 4] ||
+                all_numbers[8] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[8]);
+              };
+            };
+
+            if (all_numbers.length >= 10) {
+              if (all_numbers[9] == ziehung[i][j] ||
+                all_numbers[9] == ziehung[i][j + 1] ||
+                all_numbers[9] == ziehung[i][j + 2] ||
+                all_numbers[9] == ziehung[i][j + 3] ||
+                all_numbers[9] == ziehung[i][j + 4] ||
+                all_numbers[9] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[9]);
+              };
+            };
+
+            if (all_numbers.length >= 11) {
+              if (all_numbers[10] == ziehung[i][j] ||
+                all_numbers[10] == ziehung[i][j + 1] ||
+                all_numbers[10] == ziehung[i][j + 2] ||
+                all_numbers[10] == ziehung[i][j + 3] ||
+                all_numbers[10] == ziehung[i][j + 4] ||
+                all_numbers[10] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[10]);
+              };
+            };
+
+            if (all_numbers.length >= 12) {
+              if (all_numbers[11] == ziehung[i][j] ||
+                all_numbers[11] == ziehung[i][j + 1] ||
+                all_numbers[11] == ziehung[i][j + 2] ||
+                all_numbers[11] == ziehung[i][j + 3] ||
+                all_numbers[11] == ziehung[i][j + 4] ||
+                all_numbers[11] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[11]);
+              };
+            };
+
+            if (all_numbers.length >= 13) {
+              if (all_numbers[12] == ziehung[i][j] ||
+                all_numbers[12] == ziehung[i][j + 1] ||
+                all_numbers[12] == ziehung[i][j + 2] ||
+                all_numbers[12] == ziehung[i][j + 3] ||
+                all_numbers[12] == ziehung[i][j + 4] ||
+                all_numbers[12] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[12]);
+              };
+            };
+
+            if (all_numbers.length >= 14) {
+              if (all_numbers[13] == ziehung[i][j] ||
+                all_numbers[13] == ziehung[i][j + 1] ||
+                all_numbers[13] == ziehung[i][j + 2] ||
+                all_numbers[13] == ziehung[i][j + 3] ||
+                all_numbers[13] == ziehung[i][j + 4] ||
+                all_numbers[13] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[13]);
+              };
+            };
+
+            if (all_numbers.length >= 15) {
+              if (all_numbers[14] == ziehung[i][j] ||
+                all_numbers[14] == ziehung[i][j + 1] ||
+                all_numbers[14] == ziehung[i][j + 2] ||
+                all_numbers[14] == ziehung[i][j + 3] ||
+                all_numbers[14] == ziehung[i][j + 4] ||
+                all_numbers[14] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[14]);
+              };
+            };
+
+            if (all_numbers.length >= 16) {
+              if (all_numbers[15] == ziehung[i][j] ||
+                all_numbers[15] == ziehung[i][j + 1] ||
+                all_numbers[15] == ziehung[i][j + 2] ||
+                all_numbers[15] == ziehung[i][j + 3] ||
+                all_numbers[15] == ziehung[i][j + 4] ||
+                all_numbers[15] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[15]);
+              };
+            };
+
+            if (all_numbers.length >= 17) {
+              if (all_numbers[16] == ziehung[i][j] ||
+                all_numbers[16] == ziehung[i][j + 1] ||
+                all_numbers[16] == ziehung[i][j + 2] ||
+                all_numbers[16] == ziehung[i][j + 3] ||
+                all_numbers[16] == ziehung[i][j + 4] ||
+                all_numbers[16] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[16]);
+              };
+            };
+            if (all_numbers.length >= 18) {
+              if (all_numbers[17] == ziehung[i][j] ||
+                all_numbers[17] == ziehung[i][j + 1] ||
+                all_numbers[17] == ziehung[i][j + 2] ||
+                all_numbers[17] == ziehung[i][j + 3] ||
+                all_numbers[17] == ziehung[i][j + 4] ||
+                all_numbers[17] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[17]);
+              };
+            };
+            if (all_numbers.length >= 19) {
+              if (all_numbers[18] == ziehung[i][j] ||
+                all_numbers[18] == ziehung[i][j + 1] ||
+                all_numbers[18] == ziehung[i][j + 2] ||
+                all_numbers[18] == ziehung[i][j + 3] ||
+                all_numbers[18] == ziehung[i][j + 4] ||
+                all_numbers[18] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[18]);
+              };
+            };
+            if (all_numbers.length >= 20) {
+              if (all_numbers[19] == ziehung[i][j] ||
+                all_numbers[19] == ziehung[i][j + 1] ||
+                all_numbers[19] == ziehung[i][j + 2] ||
+                all_numbers[19] == ziehung[i][j + 3] ||
+                all_numbers[19] == ziehung[i][j + 4] ||
+                all_numbers[19] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[19]);
+              };
+            };
+            if (all_numbers.length >= 21) {
+              if (all_numbers[20] == ziehung[i][j] ||
+                all_numbers[20] == ziehung[i][j + 1] ||
+                all_numbers[20] == ziehung[i][j + 2] ||
+                all_numbers[20] == ziehung[i][j + 3] ||
+                all_numbers[20] == ziehung[i][j + 4] ||
+                all_numbers[20] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[20]);
+              };
+            };
+            if (all_numbers.length >= 22) {
+              if (all_numbers[21] == ziehung[i][j] ||
+                all_numbers[21] == ziehung[i][j + 1] ||
+                all_numbers[21] == ziehung[i][j + 2] ||
+                all_numbers[21] == ziehung[i][j + 3] ||
+                all_numbers[21] == ziehung[i][j + 4] ||
+                all_numbers[21] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[21]);
+              };
+            };
+            if (all_numbers.length >= 23) {
+              if (all_numbers[22] == ziehung[i][j] ||
+                all_numbers[22] == ziehung[i][j + 1] ||
+                all_numbers[22] == ziehung[i][j + 2] ||
+                all_numbers[22] == ziehung[i][j + 3] ||
+                all_numbers[22] == ziehung[i][j + 4] ||
+                all_numbers[22] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[22]);
+              };
+            };
+            if (all_numbers.length >= 24) {
+              if (all_numbers[23] == ziehung[i][j] ||
+                all_numbers[23] == ziehung[i][j + 1] ||
+                all_numbers[23] == ziehung[i][j + 2] ||
+                all_numbers[23] == ziehung[i][j + 3] ||
+                all_numbers[23] == ziehung[i][j + 4] ||
+                all_numbers[23] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[23]);
+              };
+            };
+            if (all_numbers.length >= 25) {
+              if (all_numbers[24] == ziehung[i][j] ||
+                all_numbers[24] == ziehung[i][j + 1] ||
+                all_numbers[24] == ziehung[i][j + 2] ||
+                all_numbers[24] == ziehung[i][j + 3] ||
+                all_numbers[24] == ziehung[i][j + 4] ||
+                all_numbers[24] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[24]);
+              };
+            };
+            if (all_numbers.length >= 26) {
+              if (all_numbers[25] == ziehung[i][j] ||
+                all_numbers[25] == ziehung[i][j + 1] ||
+                all_numbers[25] == ziehung[i][j + 2] ||
+                all_numbers[25] == ziehung[i][j + 3] ||
+                all_numbers[25] == ziehung[i][j + 4] ||
+                all_numbers[25] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[25]);
+              };
+            };
+            if (all_numbers.length >= 27) {
+              if (all_numbers[26] == ziehung[i][j] ||
+                all_numbers[26] == ziehung[i][j + 1] ||
+                all_numbers[26] == ziehung[i][j + 2] ||
+                all_numbers[26] == ziehung[i][j + 3] ||
+                all_numbers[26] == ziehung[i][j + 4] ||
+                all_numbers[26] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[26]);
+              };
+            };
+            if (all_numbers.length >= 28) {
+              if (all_numbers[27] == ziehung[i][j] ||
+                all_numbers[27] == ziehung[i][j + 1] ||
+                all_numbers[27] == ziehung[i][j + 2] ||
+                all_numbers[27] == ziehung[i][j + 3] ||
+                all_numbers[27] == ziehung[i][j + 4] ||
+                all_numbers[27] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[27]);
+              };
+            };
+            if (all_numbers.length >= 29) {
+              if (all_numbers[28] == ziehung[i][j] ||
+                all_numbers[28] == ziehung[i][j + 1] ||
+                all_numbers[28] == ziehung[i][j + 2] ||
+                all_numbers[28] == ziehung[i][j + 3] ||
+                all_numbers[28] == ziehung[i][j + 4] ||
+                all_numbers[28] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[28]);
+              };
+            };
+            if (all_numbers.length >= 30) {
+              if (all_numbers[29] == ziehung[i][j] ||
+                all_numbers[29] == ziehung[i][j + 1] ||
+                all_numbers[29] == ziehung[i][j + 2] ||
+                all_numbers[29] == ziehung[i][j + 3] ||
+                all_numbers[29] == ziehung[i][j + 4] ||
+                all_numbers[29] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[29]);
+              };
+            };
+            if (all_numbers.length >= 31) {
+              if (all_numbers[30] == ziehung[i][j] ||
+                all_numbers[30] == ziehung[i][j + 1] ||
+                all_numbers[30] == ziehung[i][j + 2] ||
+                all_numbers[30] == ziehung[i][j + 3] ||
+                all_numbers[30] == ziehung[i][j + 4] ||
+                all_numbers[30] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[30]);
+              };
+            };
+            if (all_numbers.length >= 32) {
+              if (all_numbers[31] == ziehung[i][j] ||
+                all_numbers[31] == ziehung[i][j + 1] ||
+                all_numbers[31] == ziehung[i][j + 2] ||
+                all_numbers[31] == ziehung[i][j + 3] ||
+                all_numbers[31] == ziehung[i][j + 4] ||
+                all_numbers[31] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[31]);
+              };
+            };
+            if (all_numbers.length >= 33) {
+              if (all_numbers[32] == ziehung[i][j] ||
+                all_numbers[32] == ziehung[i][j + 1] ||
+                all_numbers[32] == ziehung[i][j + 2] ||
+                all_numbers[32] == ziehung[i][j + 3] ||
+                all_numbers[32] == ziehung[i][j + 4] ||
+                all_numbers[32] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[32]);
+              };
+            };
+            if (all_numbers.length >= 34) {
+              if (all_numbers[33] == ziehung[i][j] ||
+                all_numbers[33] == ziehung[i][j + 1] ||
+                all_numbers[33] == ziehung[i][j + 2] ||
+                all_numbers[33] == ziehung[i][j + 3] ||
+                all_numbers[33] == ziehung[i][j + 4] ||
+                all_numbers[33] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[33]);
+              };
+            };
+            if (all_numbers.length >= 35) {
+              if (all_numbers[34] == ziehung[i][j] ||
+                all_numbers[34] == ziehung[i][j + 1] ||
+                all_numbers[34] == ziehung[i][j + 2] ||
+                all_numbers[34] == ziehung[i][j + 3] ||
+                all_numbers[34] == ziehung[i][j + 4] ||
+                all_numbers[34] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[34]);
+              };
+            };
+            if (all_numbers.length >= 36) {
+              if (all_numbers[35] == ziehung[i][j] ||
+                all_numbers[35] == ziehung[i][j + 1] ||
+                all_numbers[35] == ziehung[i][j + 2] ||
+                all_numbers[35] == ziehung[i][j + 3] ||
+                all_numbers[35] == ziehung[i][j + 4] ||
+                all_numbers[35] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[35]);
+              };
+            };
+            if (all_numbers.length >= 37) {
+              if (all_numbers[36] == ziehung[i][j] ||
+                all_numbers[36] == ziehung[i][j + 1] ||
+                all_numbers[36] == ziehung[i][j + 2] ||
+                all_numbers[36] == ziehung[i][j + 3] ||
+                all_numbers[36] == ziehung[i][j + 4] ||
+                all_numbers[36] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[36]);
+              };
+            };
+            if (all_numbers.length >= 38) {
+              if (all_numbers[37] == ziehung[i][j] ||
+                all_numbers[37] == ziehung[i][j + 1] ||
+                all_numbers[37] == ziehung[i][j + 2] ||
+                all_numbers[37] == ziehung[i][j + 3] ||
+                all_numbers[37] == ziehung[i][j + 4] ||
+                all_numbers[37] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[37]);
+              };
+            };
+            if (all_numbers.length >= 39) {
+              if (all_numbers[38] == ziehung[i][j] ||
+                all_numbers[38] == ziehung[i][j + 1] ||
+                all_numbers[38] == ziehung[i][j + 2] ||
+                all_numbers[38] == ziehung[i][j + 3] ||
+                all_numbers[38] == ziehung[i][j + 4] ||
+                all_numbers[38] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[38]);
+              };
+            };
+            if (all_numbers.length >= 40) {
+              if (all_numbers[39] == ziehung[i][j] ||
+                all_numbers[39] == ziehung[i][j + 1] ||
+                all_numbers[39] == ziehung[i][j + 2] ||
+                all_numbers[39] == ziehung[i][j + 3] ||
+                all_numbers[39] == ziehung[i][j + 4] ||
+                all_numbers[39] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[39]);
+              };
+            };
+            if (all_numbers.length >= 41) {
+              if (all_numbers[40] == ziehung[i][j] ||
+                all_numbers[40] == ziehung[i][j + 1] ||
+                all_numbers[40] == ziehung[i][j + 2] ||
+                all_numbers[40] == ziehung[i][j + 3] ||
+                all_numbers[40] == ziehung[i][j + 4] ||
+                all_numbers[40] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[40]);
+              };
+            };
+            if (all_numbers.length >= 42) {
+              if (all_numbers[41] == ziehung[i][j] ||
+                all_numbers[41] == ziehung[i][j + 1] ||
+                all_numbers[41] == ziehung[i][j + 2] ||
+                all_numbers[41] == ziehung[i][j + 3] ||
+                all_numbers[41] == ziehung[i][j + 4] ||
+                all_numbers[41] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[41]);
+              };
+            };
+            if (all_numbers.length >= 43) {
+              if (all_numbers[42] == ziehung[i][j] ||
+                all_numbers[42] == ziehung[i][j + 1] ||
+                all_numbers[42] == ziehung[i][j + 2] ||
+                all_numbers[42] == ziehung[i][j + 3] ||
+                all_numbers[42] == ziehung[i][j + 4] ||
+                all_numbers[42] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[42]);
+              };
+            };
+            if (all_numbers.length >= 44) {
+              if (all_numbers[43] == ziehung[i][j] ||
+                all_numbers[43] == ziehung[i][j + 1] ||
+                all_numbers[43] == ziehung[i][j + 2] ||
+                all_numbers[43] == ziehung[i][j + 3] ||
+                all_numbers[43] == ziehung[i][j + 4] ||
+                all_numbers[43] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[43]);
+              };
+            };
+            if (all_numbers.length >= 45) {
+              if (all_numbers[44] == ziehung[i][j] ||
+                all_numbers[44] == ziehung[i][j + 1] ||
+                all_numbers[44] == ziehung[i][j + 2] ||
+                all_numbers[44] == ziehung[i][j + 3] ||
+                all_numbers[44] == ziehung[i][j + 4] ||
+                all_numbers[44] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[44]);
+              };
+            };
+            if (all_numbers.length >= 46) {
+              if (all_numbers[45] == ziehung[i][j] ||
+                all_numbers[45] == ziehung[i][j + 1] ||
+                all_numbers[45] == ziehung[i][j + 2] ||
+                all_numbers[45] == ziehung[i][j + 3] ||
+                all_numbers[45] == ziehung[i][j + 4] ||
+                all_numbers[45] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[45]);
+              };
+            };
+            if (all_numbers.length >= 47) {
+              if (all_numbers[46] == ziehung[i][j] ||
+                all_numbers[46] == ziehung[i][j + 1] ||
+                all_numbers[46] == ziehung[i][j + 2] ||
+                all_numbers[46] == ziehung[i][j + 3] ||
+                all_numbers[46] == ziehung[i][j + 4] ||
+                all_numbers[46] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[46]);
+              };
+            };
+            if (all_numbers.length >= 48) {
+              if (all_numbers[47] == ziehung[i][j] ||
+                all_numbers[47] == ziehung[i][j + 1] ||
+                all_numbers[47] == ziehung[i][j + 2] ||
+                all_numbers[47] == ziehung[i][j + 3] ||
+                all_numbers[47] == ziehung[i][j + 4] ||
+                all_numbers[47] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[47]);
+              };
+            };
+            if (all_numbers.length >= 49) {
+              if (all_numbers[48] == ziehung[i][j] ||
+                all_numbers[48] == ziehung[i][j + 1] ||
+                all_numbers[48] == ziehung[i][j + 2] ||
+                all_numbers[48] == ziehung[i][j + 3] ||
+                all_numbers[48] == ziehung[i][j + 4] ||
+                all_numbers[48] == ziehung[i][j + 5]) {
+                treffer = treffer + 1;
+                Gewinnzahlen.push(all_numbers[48]);
+              };
+            };
+
+
+            if (treffer >= 6) {
+
+              document.getElementById("table_div").style.display = "block";
+
+              console.log("Treffer: ", treffer);
+              console.log("Gewinnzahlen: ", Gewinnzahlen);
+
+              match.push(ziehung[i][0]);
+              money.push(ziehung[i][7]);
+
+              match_win.push(ziehung[i][0], Gewinnzahlen);
+              console.log("Match Win: ", match_win);
+
+              console.log("Match", match);
+              document.getElementById('results').innerHTML = match_win.length / 2 + "x 'JACKPOT'";
+
+
+              let sum = 0;
+
+              for (let ix = 0; ix < money.length; ix++) {
+                  sum += money[ix];
+              }
+
+              var formatter = new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+
+              });
+
+              console.log("Money" , sum);
+
+              document.getElementById('dein_gewinn').innerHTML ="Gewinn: " + formatter.format(Math.round(sum));
+              var match_i = 1;
+              let txt_date = "";
+              let txt_zahl = "";
+              match.forEach(myX);
+              match.forEach(myY);
+
+              console.log("Match_i", match_win[match_i]);
+
+
+              document.getElementById("date").innerHTML = txt_date;
+
+              function myX(value) {
+
+                txt_date += "<tr>" + value + "</tr></br>";
+              };
+
+              document.getElementById("date_zahlen").innerHTML = txt_zahl;
+
+              function myY(value) {
+
+                txt_zahl += match_win[0 + match_i] + "</tr></br>";
+                match_i = match_i + 2
+              };
+            }
+            ;
+          };
+        }
+      }
+    }
+  </script>
+
+
+</div>
+</div>
+</div></div>
+
+<footer class="page-footer font-small blue" style="background-color:#c0c8bd; bottom:0px; margin-top:50px">
+  <div class="footer-copyright text-center py-3">Mittendorf - 2021 </b><a href="https://lotto-insights.de"><b> Lotto-Insights.de  </b></a>
+
+        <p class="m-0 text-center text-black" style="color:black; font-size:12px">Die Lotto-Insights Datenbank enthält alle Ziehungen seit 1955.
+       Gewinne basieren auf Annahmen betreffend den tatsächlichen Spieleinsatz zur jeweiligen Ziehung. Superzahlen sind nicht berücksichtigt.
+       </p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
